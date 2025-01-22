@@ -1,15 +1,15 @@
 def main():
-    with open("/home/casper/WORKSPACE/github.com/CasperD598/bookbot/books/frankenstein.txt") as f:
-        file_contents = f.read()
-    return file_contents
+    book_path = "/home/casper/WORKSPACE/github.com/CasperD598/bookbot/books/frankenstein.txt"
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
+    print(f"{num_words} words found in the document")
 
-def count_words(txt):
-    words = txt.split()
-    number = 0
-    for word in words:
-        number += 1
-    return number
+def get_book_text(path):
+    with open(path) as f:
+        return f.read()
+    
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
-content = main()
-word_number = count_words(content)
-print(word_number)
+main()
