@@ -1,5 +1,10 @@
 def main():
-    book_path = "/home/casper/WORKSPACE/github.com/CasperD598/bookbot/books/frankenstein.txt"
+    from stats import get_num_words
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    book_path = sys.argv[1]
     text = get_book_text(book_path)
     num_words = get_num_words(text)
     dict = get_num_apperance(text)
@@ -12,10 +17,6 @@ def main():
 def get_book_text(path):
     with open(path) as f:
         return f.read()
-    
-def get_num_words(text):
-    words = text.split()
-    return len(words)
 
 def get_num_apperance(text):
     Apperance_dict = {}
@@ -41,7 +42,7 @@ def print_report(list, path, num_words):
     print(f"--- Begin report of {path[53:]} ---")
     print(f"{num_words} words found in the document")
     for item in list:
-        print(f"The '{item[0]}' character was found {item[1]} times")
+        print(f"{item[0]}: {item[1]}")
     print("--- End report ---")
 
 main()
